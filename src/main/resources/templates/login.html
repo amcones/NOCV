@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="loginHtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all" />
+	<link rel="stylesheet" th:href="@{/css/public.css}" media="all" />
+	<title>nocv疫情防控系统</title>
+	<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAAAXNSR0IArs4c6QAABBlJREFUWEe12FespVMUB/DfkOgtoxNEl2gvWnQTvT4MokUN0YlEMHpJjBIPOtEFQQhCiBYGESUePKhBohNhECWGkL/sPdlz8p177p17znq5N9+399r/b+21/uu/zhQTsw3xBX5ptv2KxfEk9i3Pd8YimNWztu9pU8aJYyvsgkNwHh5p9h2NG7EJPirPL8FJeB8X4MVB54wFZEH8UxxsjuuxBdbA543j3fAYFm2e7Y6nMQNXY878AonztXFLA2bJEubTcO0AIHdjMRzQA2AaFsDzvcC6IhIQ5+NfHI7Pmk25lsOwQXmWqGV9rmpp/IUlkLyZjkebvfmwK7EsLusF0wUkYT0e++FC5L6rTcV35SqSoOuVyOV9kvgT/IktsUr5v+7dqyT0m3gAN7fv++XImtgMDzVgkh9H4VgkEoPsQdyFZ1BBJCK34qsekAZVTe44YJ7AWtho0Ok9778tQI4s13JWv/2DgGTf7UiJTsZex/b4u8PJMphdgWxdSjME9E6z+FBcgxUmg6LsPbOUcusqvJTkn1GBJGTnFBK6r6xMntyDbYcAIi7CPanCl4u/EOSz+BEzAyShebyErp4ZplwYxwwJRHVzB17AidgG95fE/aFGJKFfCR/gYCS5dhwyiLgLN4Wtb8BN+LAUwaf9knV/PDwCIHF5MS7q9d0PSBaGzEZh4ZeDuoBcVbpjmlS1ENERo0CBN5BuXm0PTEtEvi4s12qMVMxSIwKSHPmm8R3dMqcCSdW817wMjW88IiDf44zG96bhkgCpZJUF1a7DySMC8hx2bXz/f36/ZA2IgBmFxe+p462a6I60//H0oomCvQJndwGJxAvdpsNGh4T1kh8RREnaYVoKIkXwcdEk0SaRnq/ki1M+9xbllEMvLay3HULJEUDDsjS+0HrYO1o29jb2DJCInDS35fOgp1UPM2kjsNO70uSqRTS9GulYc+DAIvWiG1qLEIq+jGycjEXFn17GjtbPqkVqzhpPMuZ6IhHn117D7whf7I23uhwNAjIT0SonYJ1C+8tNAFFEcjptwNxZunq0b2weQF1AQrk7YYcCIl/xVNkcEXw51sdCfQD9VgRPlHyUepK/WgWTCs2VzwXTCyQgUsKp8xVLKCuI6ixjQ5riu1i3SfKfCwlmzEwlnFImvZUbIFFo+ZA02gxvf9R3XRFZvYCJRIwcaOfWfQrfZL75qTkgJTm7cFB9nGqMWA4vRQTFQufRqfOAyIt+ORKSyWTWglitjARRWXHWWheQvI8IyhDejqkh0LmRGCsi/ZI6ii1jZARTQts66wKSWTlDeLgjEvS48rcztQZVTd0Uqs9ckjk31H9u4y1jZ0aO0Heusv40kSXRvjkjHffLsaptvEBaH/mJoi29DF+3lQWZ9l9qFqevtIKrL5b/AAFF1e36acRqAAAAAElFTkSuQmCC" class="jsx-1062430909 jsx-1773464493">
+</head>
+<body class="loginBody">
+	<form class="layui-form">
+		<div class="login_face"><img th:src="@{/images/login.jpg}" class="userAvatar"></div>
+		<div class="layui-form-item input-item">
+			<label for="username">用户名</label>
+			<input type="text" placeholder="请输入用户名" autocomplete="off" id = "userName" name="username" class="layui-input" lay-verify="required">
+		</div>
+		<div class="layui-form-item input-item">
+			<label for="password">密码</label>
+			<input type="password" placeholder="请输入密码" autocomplete="off" id = "password" name="password" class="layui-input" lay-verify="required">
+		</div>
+		<div class="layui-form-item input-item" id="imgCode">
+			<label for="code">验证码</label>
+			<input type="text" placeholder="请输入验证码" name="code" autocomplete="off" id="code" class="layui-input" lay-verify="required">
+			<img th:src="@{/login/getCode}" onclick="this.src=this.src+'?'">
+		</div>
+		<div class="layui-form-item">
+			<button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
+		</div>
+		<div class="layui-form-item layui-row">
+			<a href="javascript:;" class="seraph icon-qq layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+			<a href="javascript:;" class="seraph icon-wechat layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+			<a href="javascript:;" class="seraph icon-sina layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+		</div>
+	</form>
+	<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+	<script type="text/javascript">
+		layui.use(['form','layer','jquery'],function(){
+			var form = layui.form,
+					layer = parent.layer === undefined ? layui.layer : top.layer
+			$ = layui.jquery;
+
+			//登录按钮
+			form.on("submit(login)",function(data){
+				var btn =  $(this);
+				//设置登录按钮  为不可点击
+				btn.text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+				$.post("/login/login",data.field,function(rs){
+					//设置登录按钮 恢复可点击   在前端防止 重复点击
+					btn.text("登录").attr("disabled",false).removeClass("layui-disabled");
+					layer.msg(rs.msg);
+					if(rs.code != 200){
+						layer.msg(rs.msg);
+						$.get("/login/getCode",function (code) {
+							$("#img").attr("src","/login/getCode");
+						})
+					}else{
+						//跳转到templates/system/index/index.html页面
+						layer.msg(rs.msg);
+						location.href="/";
+					}
+				});
+				return false;
+			})
+
+			//表单输入效果
+			$(".loginBody .input-item").click(function(e){
+				e.stopPropagation();
+				$(this).addClass("layui-input-focus").find(".layui-input").focus();
+			})
+			$(".loginBody .layui-form-item .layui-input").focus(function(){
+				$(this).parent().addClass("layui-input-focus");
+			})
+			$(".loginBody .layui-form-item .layui-input").blur(function(){
+				$(this).parent().removeClass("layui-input-focus");
+				if($(this).val() != ''){
+					$(this).parent().addClass("layui-input-active");
+				}else{
+					$(this).parent().removeClass("layui-input-active");
+				}
+			})
+		})
+
+	</script>
+</body>
+</html>

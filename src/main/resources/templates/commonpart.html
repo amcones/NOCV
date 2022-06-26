@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="common-head">
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 注意：项目正式环境请勿引用该地址 -->
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet">
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script th:src="@{/echarts/echarts.min.js}"></script>
+    <script th:src="@{/echarts/china.js}"></script>
+    <script th:src="@{/echarts/jquery.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{echarts/world.js}"></script>
+    <style>
+        body{padding: 6px 16px;}
+        .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+    </style>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAAAXNSR0IArs4c6QAABBlJREFUWEe12FespVMUB/DfkOgtoxNEl2gvWnQTvT4MokUN0YlEMHpJjBIPOtEFQQhCiBYGESUePKhBohNhECWGkL/sPdlz8p177p17znq5N9+399r/b+21/uu/zhQTsw3xBX5ptv2KxfEk9i3Pd8YimNWztu9pU8aJYyvsgkNwHh5p9h2NG7EJPirPL8FJeB8X4MVB54wFZEH8UxxsjuuxBdbA543j3fAYFm2e7Y6nMQNXY878AonztXFLA2bJEubTcO0AIHdjMRzQA2AaFsDzvcC6IhIQ5+NfHI7Pmk25lsOwQXmWqGV9rmpp/IUlkLyZjkebvfmwK7EsLusF0wUkYT0e++FC5L6rTcV35SqSoOuVyOV9kvgT/IktsUr5v+7dqyT0m3gAN7fv++XImtgMDzVgkh9H4VgkEoPsQdyFZ1BBJCK34qsekAZVTe44YJ7AWtho0Ok9778tQI4s13JWv/2DgGTf7UiJTsZex/b4u8PJMphdgWxdSjME9E6z+FBcgxUmg6LsPbOUcusqvJTkn1GBJGTnFBK6r6xMntyDbYcAIi7CPanCl4u/EOSz+BEzAyShebyErp4ZplwYxwwJRHVzB17AidgG95fE/aFGJKFfCR/gYCS5dhwyiLgLN4Wtb8BN+LAUwaf9knV/PDwCIHF5MS7q9d0PSBaGzEZh4ZeDuoBcVbpjmlS1ENERo0CBN5BuXm0PTEtEvi4s12qMVMxSIwKSHPmm8R3dMqcCSdW817wMjW88IiDf44zG96bhkgCpZJUF1a7DySMC8hx2bXz/f36/ZA2IgBmFxe+p462a6I60//H0oomCvQJndwGJxAvdpsNGh4T1kh8RREnaYVoKIkXwcdEk0SaRnq/ki1M+9xbllEMvLay3HULJEUDDsjS+0HrYO1o29jb2DJCInDS35fOgp1UPM2kjsNO70uSqRTS9GulYc+DAIvWiG1qLEIq+jGycjEXFn17GjtbPqkVqzhpPMuZ6IhHn117D7whf7I23uhwNAjIT0SonYJ1C+8tNAFFEcjptwNxZunq0b2weQF1AQrk7YYcCIl/xVNkcEXw51sdCfQD9VgRPlHyUepK/WgWTCs2VzwXTCyQgUsKp8xVLKCuI6ixjQ5riu1i3SfKfCwlmzEwlnFImvZUbIFFo+ZA02gxvf9R3XRFZvYCJRIwcaOfWfQrfZL75qTkgJTm7cFB9nGqMWA4vRQTFQufRqfOAyIt+ORKSyWTWglitjARRWXHWWheQvI8IyhDejqkh0LmRGCsi/ZI6ii1jZARTQts66wKSWTlDeLgjEvS48rcztQZVTd0Uqs9ckjk31H9u4y1jZ0aO0Heusv40kSXRvjkjHffLsaptvEBaH/mJoi29DF+3lQWZ9l9qFqevtIKrL5b/AAFF1e36acRqAAAAAElFTkSuQmCC" class="jsx-1062430909 jsx-1773464493">
+    <title>nocv疫情防控系统</title>
+</head>
+<body>
+<div th:fragment="side-scroll">
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">疫情数据可视化</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/">中国疫情地图</a></dd>
+                        <dd><a href="/toPie">疫情饼图</a></dd>
+                        <dd><a href="/toBar">疫情柱状图</a></dd>
+                        <dd><a href="/toTrend">疫情折线图</a></dd>
+                        <dd><a href="/toGlobal">全球疫情地图</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">疫情数据管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/toChinaManager">中国疫情数据管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">健康打卡管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/toHealthClock">健康打卡记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/menu/toMenu">菜单管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:fragment="head-bar">
+    <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black">
+            <svg viewBox="-221.84599156118145 -253.6561992688616 443.6919831223629 353.6561992688616" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="jsx-2263963463 artboard-inner" style="width: 163.096px; height: 130px; max-height: 70%;margin: 10px 0 10px 0"><g transform="translate(-234.5042194092827 97.25738396624473) scale(2.9301453352086257)" fill="#FFFFFF"><g id="line1"><path d="M6.624 0L6.624-18.864C6.624-22.176 7.884-25.056 10.404-27.504C12.924-29.952 15.840-31.176 19.152-31.176C22.464-31.176 25.284-29.952 27.612-27.504C29.940-25.056 31.104-22.176 31.104-18.864L31.104 0L33.408 0L33.408-18.864C33.408-22.848 32.040-26.232 29.304-29.016C26.568-31.800 23.184-33.192 19.152-33.192C13.248-33.192 9.072-30.744 6.624-25.848L6.624-32.400L4.320-32.400L4.320 0Z"></path><path d="M48.794-4.356C52.106-0.924 56.066 0.792 60.674 0.792L61.322 0.792C65.978 0.792 69.938-0.912 73.202-4.320C76.466-7.728 78.098-11.724 78.098-16.308C78.098-20.892 76.430-24.852 73.094-28.188C69.758-31.524 65.726-33.192 60.998-33.192C56.270-33.192 52.226-31.524 48.866-28.188C45.506-24.852 43.826-20.904 43.826-16.344C43.826-11.784 45.482-7.788 48.794-4.356ZM71.438-26.712C74.342-23.736 75.794-20.220 75.794-16.164C75.794-12.108 74.354-8.604 71.474-5.652C68.594-2.700 65.126-1.224 61.070-1.224C57.014-1.224 53.510-2.700 50.558-5.652C47.606-8.604 46.130-12.096 46.130-16.128C46.130-20.160 47.606-23.676 50.558-26.676C53.510-29.676 57.002-31.176 61.034-31.176C65.066-31.176 68.534-29.688 71.438-26.712Z"></path><path d="M104.213 0.936C109.157 0.936 113.309-0.912 116.669-4.608L116.669-8.352C115.181-6.096 113.297-4.320 111.017-3.024C108.737-1.728 106.349-1.080 103.853-1.080C99.869-1.080 96.401-2.556 93.449-5.508C90.497-8.460 89.021-11.976 89.021-16.056C89.021-20.136 90.497-23.652 93.449-26.604C96.401-29.556 99.869-31.032 103.853-31.032C106.349-31.032 108.737-30.384 111.017-29.088C113.297-27.792 115.181-26.040 116.669-23.832L116.669-27.504C113.213-31.200 109.037-33.048 104.141-33.048C99.245-33.048 95.117-31.380 91.757-28.044C88.397-24.708 86.717-20.748 86.717-16.164C86.717-11.580 88.373-7.584 91.685-4.176C94.997-0.768 98.957 0.936 103.565 0.936Z"></path><path d="M153.655-32.400L140.047-3.960L126.367-32.400L123.847-32.400L139.831 0.936L155.743-32.400Z"></path></g></g><g transform="translate(-139.56267898640826 -284.4714684338448) scale(2.7892171332970914)" id="logomark"><g fill="#FFFFFF"><circle cx="50.254" cy="50.596" r="27.852"></circle><ellipse cx="50.938" cy="12.398" rx="3.104" ry="1.35"></ellipse><path d="M49.385 12.412h2.932v22.029h-2.932z"></path><ellipse cx="88.453" cy="50.596" rx="1.352" ry="3.104"></ellipse><path d="M66.41 49.044h22.029v2.933H66.41z"></path><ellipse cx="52.238" cy="89.883" rx="3.104" ry="1.351"></ellipse><path d="M50.857 67.84h2.933v22.029h-2.933z"></path><ellipse cx="11.619" cy="50.596" rx="1.351" ry="3.104"></ellipse><path d="M11.633 49.217h22.029v2.932H11.633z"></path><ellipse transform="rotate(45.001 78.032 77.601)" cx="78.031" cy="77.602" rx="1.351" ry="3.104"></ellipse><path d="M61.467 62.99l2.073-2.073 15.576 15.576-2.073 2.073z"></path><ellipse transform="rotate(135.008 23.486 79.537)" cx="23.486" cy="79.537" rx="1.351" ry="3.104"></ellipse><path d="M38.096 62.974l2.073 2.072-15.575 15.58-2.072-2.073z"></path><ellipse transform="rotate(-135.008 23.484 21.833)" cx="23.485" cy="21.833" rx="1.35" ry="3.104"></ellipse><path d="M40.047 36.445l-2.073 2.074-15.577-15.577 2.074-2.073z"></path><g><ellipse transform="rotate(-45.009 77.016 22.32)" cx="77.018" cy="22.318" rx="1.351" ry="3.104"></ellipse><path d="M62.41 38.882l-2.073-2.072L75.91 21.23l2.073 2.071z"></path></g><g><ellipse transform="scale(-1) rotate(20.506 201.211 -81.795)" cx="14.795" cy="36.395" rx="1.35" ry="3.104"></ellipse><path d="M35.928 42.822l-1.026 2.746-20.634-7.71 1.026-2.746z"></path></g><g><ellipse transform="rotate(-69.481 63.716 14.638)" cx="63.714" cy="14.636" rx="1.351" ry="3.104"></ellipse><path d="M57.284 35.77l-2.745-1.027 7.714-20.635L65 15.134z"></path></g><g><ellipse transform="rotate(20.517 85.73 64.852)" cx="85.724" cy="64.844" rx="1.35" ry="3.104"></ellipse><path d="M64.592 58.42l1.026-2.748 20.638 7.704-1.025 2.747z"></path><g><ellipse transform="rotate(110.512 36.802 86.599)" cx="36.802" cy="86.6" rx="1.35" ry="3.104"></ellipse><path d="M43.227 65.474l2.746 1.027-7.719 20.631-2.746-1.027z"></path></g></g><g><ellipse transform="rotate(-24.489 87.282 35.65)" cx="87.273" cy="35.648" rx="1.351" ry="3.104"></ellipse><path d="M67.785 46.04l-1.215-2.667 20.044-9.13 1.215 2.667z"></path><g><ellipse transform="rotate(65.493 68.062 85.623)" cx="68.061" cy="85.624" rx="1.35" ry="3.104"></ellipse><path d="M57.669 66.138l2.668-1.216 9.135 20.047-2.668 1.216z"></path></g></g><g><ellipse transform="rotate(155.505 14.02 65.417)" cx="14.02" cy="65.417" rx="1.351" ry="3.104"></ellipse><path d="M33.505 55.024l1.215 2.669-20.047 9.128-1.215-2.669z"></path></g><g><ellipse transform="scale(-1) rotate(65.511 24.057 -55.946)" cx="35.991" cy="15.477" rx="1.351" ry="3.104"></ellipse><path d="M46.385 34.965l-2.668 1.215-9.132-20.05 2.668-1.216z"></path></g></g></g></svg>
+        </div>
+        <!-- 头部区域（可配合layui 已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <!-- 移动端显示 -->
+            <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+                <i class="layui-icon layui-icon-spread-left"></i>
+            </li>
+
+            <li class="layui-nav-item layui-hide-xs"><a href="">nav 1</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="">nav 2</a></li>
+            <li class="layui-nav-item layui-hide-xs"><a href="">nav 3</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">nav groups</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">menu 11</a></dd>
+                    <dd><a href="">menu 22</a></dd>
+                    <dd><a href="">menu 33</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                <a href="javascript:;">
+                    <img th:src="${session.user.img}" class="layui-nav-img">
+                    <span th:text="${session.user.username}"></span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">Your Profile</a></dd>
+                    <dd><a href="">Settings</a></dd>
+                    <dd><a th:href="@{/tologout}">Sign out</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

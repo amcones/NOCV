@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://119.3.93.188:3306/nocv
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+shiro:
+  anon-urls:
+    - /toLogin*
+    - /login.html*
+    - /login/login
+    - /login/getCode
+    - /css/**
+    - /echarts/**
+    - /images/**
+    - /layui/**
+    - /layui_ext/**
+    - /js/**
+  login-url: /enter.html
+  log-out-url: /login/logout*
+  authc-urls:
+    - /**

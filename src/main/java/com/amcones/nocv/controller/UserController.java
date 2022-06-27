@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -71,4 +73,29 @@ public class UserController {
 
         return new DataView(iPage.getTotal(),iPage.getRecords());
     }
+
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public DataView addUser(User user){
+        userService.save(user);
+        DataView dataView = new DataView();
+        dataView.setCode(200);
+        dataView.setMsg("添加用户成功");
+        return dataView;
+    }
+
+    @RequestMapping("/listAllBanJi")
+    @ResponseBody
+    public List<BanJi> listAllBanJi(){
+        List<BanJi> list = banJiService.list();
+        return list;
+    }
+
+    @RequestMapping("/listAllXueYuan")
+    @ResponseBody
+    public List<XueYuan> listAllXueYuan(){
+        List<XueYuan> list = xueYuanService.list();
+        return list;
+    }
+
 }

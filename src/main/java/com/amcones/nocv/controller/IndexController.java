@@ -1,11 +1,16 @@
 package com.amcones.nocv.controller;
 
+import com.amcones.nocv.entity.ChinaTotal;
 import com.amcones.nocv.entity.LineTrend;
 import com.amcones.nocv.entity.NocvData;
+import com.amcones.nocv.entity.NocvNews;
+import com.amcones.nocv.service.ChinaTotalService;
 import com.amcones.nocv.service.IndexService;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.amcones.nocv.service.NocvNewsService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,14 +22,31 @@ import java.util.*;
 public class IndexController {
     @Autowired
     private IndexService indexService;
+    @Autowired
+    private NocvNewsService nocvNewsService;
+    @Autowired
+    private ChinaTotalService chinaTotalService;
 
     @RequestMapping("/")
-    public String index()throws ParseException{
+    public String index(Model model)throws ParseException{
+        Integer id = chinaTotalService.maxID();
+        ChinaTotal chinaTotal = chinaTotalService.getById(id);
+        model.addAttribute("chinaTotal",chinaTotal);
+
+
+
         return "index";
     }
 
     @RequestMapping("/toChina")
-    public String toChina()throws ParseException{
+    public String toChina(Model model)throws ParseException{
+        Integer id = chinaTotalService.maxID();
+        ChinaTotal chinaTotal = chinaTotalService.getById(id);
+        model.addAttribute("chinaTotal",chinaTotal);
+
+        List<NocvNews>newsList = nocvNewsService.listNewsLimit5();
+        model.addAttribute("newsList",newsList);
+
         return "china";
     }
 

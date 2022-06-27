@@ -17,4 +17,13 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     @Insert("insert into role_menu(rid,mid) values (#{rid},#{mid})")
     void saveRoleMenu(Integer rid, Integer mid);
+
+    @Select("select rid from user_role where uid = #{id}")
+    List<Integer> queryUserRoleById(Integer id);
+
+    @Delete("delete from user_role where uid = #{uid}")
+    void deleteRoleUserByUid(Integer uid);
+
+    @Insert("insert into user_role(uid,rid) values(#{uid},#{rid})")
+    void saveUserRole(Integer uid, Integer rid);
 }

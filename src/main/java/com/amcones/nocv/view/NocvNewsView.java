@@ -1,6 +1,6 @@
 package com.amcones.nocv.view;
 
-import com.amcones.nocv.entity.NocvData;
+import com.amcones.nocv.entity.NocvNews;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-
-public class NocvDataView extends NocvData {
+public class NocvNewsView extends NocvNews {
     private Integer page;
     private Integer limit;
 }

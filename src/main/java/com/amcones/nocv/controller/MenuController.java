@@ -1,7 +1,9 @@
 package com.amcones.nocv.controller;
 
 import com.amcones.nocv.entity.Menu;
+import com.amcones.nocv.entity.User;
 import com.amcones.nocv.service.MenuService;
+import com.amcones.nocv.service.RoleService;
 import com.amcones.nocv.utils.TreeNode;
 import com.amcones.nocv.utils.TreeNodeBuilder;
 import com.amcones.nocv.view.DataView;
@@ -16,10 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @Controller
 @RequestMapping("/menu")
@@ -27,6 +27,9 @@ public class MenuController {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping("/toMenu")
     public String toMenu(){
@@ -121,17 +124,40 @@ public class MenuController {
 
     @RequestMapping("/loadIndexLeftMenuJson")
     @ResponseBody
-    public DataView loadIndexLeftMenuJson(Menu menu){
-        List<Menu> list = menuService.list();
+    public DataView loadIndexLeftMenuJson(Menu menu, HttpSession session){
+        QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
+        List<Menu> list = null;
+
+
+        User user = (User) session.getAttribute("user");
+        Integer userId = user.getId();
+
+        if(user.getUsername().equals("admin")||StringUtils.equals(user.getUsername(),"admin")){
+            list = menuService.list();
+        }else {
+
+            List<Integer> currentUserRoleIds = roleService.queryUserRoleById(userId);
+            Set<Integer> mids = new HashSet<>();
+            for (Integer rid : currentUserRoleIds) {
+                List<Integer> permissionIds = roleService.queryAllPermissionByRid(rid);
+                mids.addAll(permissionIds);
+            }
+            if (mids.size() > 0) {
+                queryWrapper.in("id", mids);
+                list = menuService.list(queryWrapper);
+            }
+        }
         List<TreeNode> treeNodes = new ArrayList<>();
-        for(Menu m:list){
-            Integer id=m.getId();
-            Integer pid=m.getPid();
-            String title=m.getTitle();
-            String icon=m.getIcon();
-            String href=m.getHref();
-            Boolean open = m.getOpen().equals(1);
-            treeNodes.add(new TreeNode(id,pid,title,icon,href,open));
+        if(list!=null) {
+            for (Menu m : list) {
+                Integer id = m.getId();
+                Integer pid = m.getPid();
+                String title = m.getTitle();
+                String icon = m.getIcon();
+                String href = m.getHref();
+                Boolean open = m.getOpen().equals(1);
+                treeNodes.add(new TreeNode(id, pid, title, icon, href, open));
+            }
         }
         List<TreeNode>nodeList = TreeNodeBuilder.build(treeNodes,0);
         return new DataView(nodeList);

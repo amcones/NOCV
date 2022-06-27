@@ -1,5 +1,6 @@
 package com.amcones.nocv.service.impl;
 
+import com.amcones.nocv.dao.RoleMapper;
 import com.amcones.nocv.dao.UserMapper;
 import com.amcones.nocv.entity.User;
 import com.amcones.nocv.service.UserService;
@@ -12,9 +13,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>implements Use
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RoleMapper roleMapper;
+
     @Override
     public User login(String username, String password) {
         return userMapper.login(username,password);
+    }
+
+    @Override
+    public void saveUserRole(Integer uid, Integer[] ids) {
+        roleMapper.deleteRoleUserByUid(uid);
+        if(ids!=null&&ids.length>0){
+            for(Integer rid:ids){
+                roleMapper.saveUserRole(uid,rid);
+            }
+        }
     }
 
 }

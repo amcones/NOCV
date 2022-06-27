@@ -3,12 +3,14 @@ package com.amcones.nocv.controller;
 import com.amcones.nocv.entity.Menu;
 import com.amcones.nocv.service.MenuService;
 import com.amcones.nocv.utils.TreeNode;
+import com.amcones.nocv.utils.TreeNodeBuilder;
 import com.amcones.nocv.view.DataView;
 import com.amcones.nocv.view.MenuView;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -115,5 +117,23 @@ public class MenuController {
         dataView.setCode(200);
         dataView.setMsg("删除菜单成功");
         return dataView;
+    }
+
+    @RequestMapping("/loadIndexLeftMenuJson")
+    @ResponseBody
+    public DataView loadIndexLeftMenuJson(Menu menu){
+        List<Menu> list = menuService.list();
+        List<TreeNode> treeNodes = new ArrayList<>();
+        for(Menu m:list){
+            Integer id=m.getId();
+            Integer pid=m.getPid();
+            String title=m.getTitle();
+            String icon=m.getIcon();
+            String href=m.getHref();
+            Boolean open = m.getOpen().equals(1);
+            treeNodes.add(new TreeNode(id,pid,title,icon,href,open));
+        }
+        List<TreeNode>nodeList = TreeNodeBuilder.build(treeNodes,0);
+        return new DataView(nodeList);
     }
 }

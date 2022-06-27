@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:include="commonpart :: common-head"></head>
-<body>
+<body class="childrenBody">
 <!--模态窗-->
 <div id="addOrUpdateDiv" style="display: none;">
     <form action="" method="post" id="searchFrm2" lay-filter="searchFrm2" class="layui-form">
@@ -104,11 +104,8 @@
 
 <!--layui公共模块-->
 <div class="layui-layout layui-layout-admin">
-    <div th:include="commonpart :: head-bar"></div>
 
-    <div th:include="commonpart :: side-scroll"></div>
-
-    <div class="layui-body">
+    <div>
         <!-- 内容主体区域 -->
         <!--搜索条件-->
         <div style="padding-top: 5%">

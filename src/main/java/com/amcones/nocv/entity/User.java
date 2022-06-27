@@ -1,6 +1,7 @@
 package com.amcones.nocv.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -25,4 +26,13 @@ public class User {
     private Integer banJiId;
     private Integer xueYuanId;
     private Integer teacherId;
+
+    @TableField(exist = false)
+    private String banJiName;
+
+    @TableField(exist = false)
+    private String xueYuanName;
+
+    @TableField(exist = false)
+    private String teacherName;
 }

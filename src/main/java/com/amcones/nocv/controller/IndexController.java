@@ -3,6 +3,7 @@ package com.amcones.nocv.controller;
 import com.amcones.nocv.entity.LineTrend;
 import com.amcones.nocv.entity.NocvData;
 import com.amcones.nocv.service.IndexService;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,16 @@ import java.util.*;
 public class IndexController {
     @Autowired
     private IndexService indexService;
+
+    @RequestMapping("/")
+    public String index()throws ParseException{
+        return "index";
+    }
+
+    @RequestMapping("/toChina")
+    public String toChina()throws ParseException{
+        return "china";
+    }
 
     @RequestMapping("/query")
     @ResponseBody
